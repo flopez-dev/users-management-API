@@ -1,7 +1,10 @@
-package entity;
+package model;
 
+import enums.CustomerStatus;
 import java.time.LocalDate;
+import java.util.UUID;
 import lombok.Builder;
+import lombok.NonNull;
 import lombok.Value;
 
 /**
@@ -11,14 +14,20 @@ import lombok.Value;
 @Builder(toBuilder = true)
 public class Customer {
 
-  String username;
-  String password;
+  @NonNull
   String email;
+  @NonNull
   String name;
+  @NonNull
   String lastName;
+  String password;
+
+  UUID customerId;
+  String username;
   LocalDate birthDate;
-  Address address;
   String role;
   String profilePictureUrl;
 
+  CustomerStatus status;
+  Address address;
 }

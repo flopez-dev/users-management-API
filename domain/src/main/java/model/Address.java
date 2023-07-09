@@ -1,4 +1,4 @@
-package entity;
+package model;
 
 import lombok.Builder;
 import lombok.Value;
