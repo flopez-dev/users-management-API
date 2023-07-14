@@ -38,13 +38,13 @@ class RegisterCustomerUseCaseTest {
   void givenNewCustomerWhenRegistrationThenReturnCustomer() {
     //Given
     CustomerRegistrationDto registrationDto = getRegistrationDto();
-    when(this.customerRepository.save(any())).thenReturn(getSavedCustomer());
+    when(this.customerRepository.add(any())).thenReturn(getSavedCustomer());
 
     //When
     CustomerDto createdCustomer = this.registerCustomerUseCase.execute(registrationDto);
 
     //Then
-    verify(customerRepository, times(1)).save(any());
+    verify(customerRepository, times(1)).add(any());
     assertNotNull(createdCustomer.getCustomerId());
     assertEquals(createdCustomer.getName(), registrationDto.getName());
     assertEquals(createdCustomer.getLastName(), registrationDto.getLastName());
@@ -55,15 +55,15 @@ class RegisterCustomerUseCaseTest {
   @Test
   void givenExistingCustomerWhenRegistrationThenReturnException() {
     //Given
-    when(this.customerRepository.save(any())).thenThrow(
+    when(this.customerRepository.add(any())).thenThrow(
         new IllegalArgumentException("Customer already exists"));
 
     //When
     assertThrows(IllegalArgumentException.class,
-        () -> this.registerCustomerUseCase.execute(getRegistrationDto()));
+        () -> this.registerCustomerUseCase.execute(getRegistrationDto()).toString());
 
     //Then
-    verify(customerRepository, times(1)).save(any());
+    verify(customerRepository, times(1)).add(any());
   }
 
   private static CustomerRegistrationDto getRegistrationDto() {

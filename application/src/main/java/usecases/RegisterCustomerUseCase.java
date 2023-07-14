@@ -25,7 +25,7 @@ public class RegisterCustomerUseCase {
    * @return The CustomerDto representing the registered customer.
    */
   public CustomerDto execute(CustomerRegistrationDto customerRegistrationDto) {
-    final Customer savedCustomer = customerRepository.save(
+    final Customer savedCustomer = customerRepository.add(
         mapper.registrationDtoToCustomer(customerRegistrationDto));
 
     return mapper.customerToDto(savedCustomer);

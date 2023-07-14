@@ -1,11 +1,11 @@
-package ports.output;
+package ports.input;
 
 import model.Customer;
 
 /**
  * Customer repository service.
  */
-public interface CustomerRepository {
+public interface CustomerManagementUseCase {
 
   Customer add(Customer customer);
 }
